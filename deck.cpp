@@ -47,12 +47,16 @@ void Deck::shuffleDeck(){
 }
 
 void Deck::createDeck(){
+    Card cardToPush;
     for(int i = 0; i < numSuits; i++){
         for(int j = 1; j < deckSize / numSuits + 1; j++){
-            if(!isFull()){
-                Card cardToPush = Card(j, suitTypes[i]);
-                push(cardToPush);
+            if(!isFull() && j <= 10){
+                cardToPush = Card(j, suitTypes[i]);
             }
+            else if(!isFull() && j > 10){
+                cardToPush = Card(10, suitTypes[i]);
+            }
+            push(cardToPush);
         }
     }
     shuffleDeck();
